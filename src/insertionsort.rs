@@ -1,9 +1,7 @@
 #[allow(unused)]
 pub fn sort<T: Ord>(slice: &mut [T]) {
     for unsorted in 1..slice.len() {
-        let i = slice[..unsorted]
-            .binary_search(&slice[unsorted])
-            .unwrap_or_else(std::convert::identity);
+        let (Ok(i) | Err(i)) = slice[..unsorted].binary_search(&slice[unsorted]);
         slice[i..=unsorted].rotate_right(1);
     }
 }
