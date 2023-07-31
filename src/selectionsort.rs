@@ -1,13 +1,13 @@
 #[allow(unused)]
 pub fn sort<T: Ord>(slice: &mut [T]) {
     for unsorted in 0..slice.len() {
-        let mut imin = unsorted;
-        for (i, v) in slice[(unsorted + 1)..].iter().enumerate() {
-            if v < &slice[imin] {
-                imin = unsorted + 1 + i;
+        let mut index = unsorted;
+        for i in (unsorted + 1)..slice.len() {
+            if slice[i] < slice[index] {
+                index = i;
             }
         }
-        slice.swap(unsorted, imin);
+        slice.swap(unsorted, index);
     }
 }
 
